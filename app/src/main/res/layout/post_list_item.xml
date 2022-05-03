@@ -100,7 +100,6 @@
         android:layout_marginTop="@dimen/common_spacing"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_share_24dp"
-        app:layout_constraintEnd_toStartOf="sh"
         app:layout_constraintStart_toEndOf="@id/likesCount"
         app:layout_constraintTop_toBottomOf="@id/content" />
 
