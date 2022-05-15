@@ -3,4 +3,6 @@
     <string name="app_name">НМедиа</string>
     <string name="nmedia">НМедиа!</string>
     <string name="avatar_description">Аватар автора</string>
+    <string name="thousands">%1$sТ</string>
+    <string name="million">%1$sМ</string>
 </resources>
