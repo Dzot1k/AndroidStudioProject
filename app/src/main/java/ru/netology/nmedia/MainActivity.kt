@@ -3,11 +3,15 @@ package ru.netology.nmedia
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.annotation.DrawableRes
 import ru.netology.nmedia.Post.Post
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.viewModel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: PostViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,27 +19,16 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val post = Post(
-            id = 0L,
-            author = "Vladimir",
-            content = "Events",
-            published = "14.05.2022",
-            likes = 999,
-            shareCount = 999_999
-        )
+        viewModel.data.observe(this) { post ->
+            binding.render(post)
+        }
 
-        binding.render(post)
         binding.likeIcon?.setOnClickListener {
-            post.likedByMe = !post.likedByMe
-            binding.likeIcon.setImageResource(getLikeIconResId(post.likedByMe))
-            post.likes = post.likes + getLikeCount(post.likedByMe)
-            binding.likesCount.text = getTrueCount(post.likes)
-
+            viewModel.onLikeClicked()
         }
 
         binding.shareIcon?.setOnClickListener {
-            post.shareCount = post.shareCount + 1
-            binding.shareCount.text = getTrueCount(post.shareCount)
+            viewModel.onShareClicked()
         }
     }
 
@@ -53,10 +46,6 @@ class MainActivity : AppCompatActivity() {
     @DrawableRes
     private fun getLikeIconResId(liked: Boolean) =
         if (liked) R.drawable.ic_liked_24dp else R.drawable.ic_like_24dp
-
-    private fun getLikeCount(liked: Boolean) =
-        if (liked) 1 else -1
-
 
     @SuppressLint("StringFormatInvalid")
     private fun getTrueCount(count: Int): String {
