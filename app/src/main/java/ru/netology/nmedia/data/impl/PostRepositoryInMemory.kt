@@ -1,45 +1,50 @@
 package ru.netology.nmedia.data.impl
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.Post.Post
 import ru.netology.nmedia.data.PostRepository
 
 class PostRepositoryInMemory : PostRepository {
+
+    private val posts
+        get() = checkNotNull(data.value) {
+            "Data value should not be null"
+        }
+
     override val data = MutableLiveData(
-        Post(
-            id = 0L,
-            author = "Vladimir",
-            content = "Events",
-            published = "14.05.2022",
-            likes = 999,
-            shareCount = 999_999
-        )
+        List(100) { index ->
+            Post(
+                id = index + 1L,
+                author = "Netology",
+                content = "Content $index",
+                published = "21.05.2022",
+                likes = 999,
+                shareCount = 999_999
+            )
+        }
 
     )
 
-    override fun like() {
-        val currentPost = checkNotNull(data.value) {
-            "Data value should not be null"
+    override fun like(postId: Long) {
+        data.value = posts.map {
+            val likedOrNotCount =
+                if (!it.likedByMe) it.likes + 1 else it.likes - 1
+            if (it.id != postId) it
+            else it.copy(
+                likedByMe = !it.likedByMe,
+                likes = likedOrNotCount
+            )
         }
-        val countLikes =
-            if (!currentPost.likedByMe) currentPost.likes + 1 else currentPost.likes - 1
-        val likedPost = currentPost.copy(
-            likedByMe = !currentPost.likedByMe,
-            likes = countLikes
-        )
-        data.value = likedPost
+
     }
 
-    override fun share() {
-        val currentPost = checkNotNull(data.value) {
-            "Data value should not be null"
+    override fun share(postId: Long) {
+        data.value = posts.map {
+            val countShare = it.shareCount + 1
+            if (it.id != postId) it
+            else it.copy(shareCount = countShare)
         }
-        val countShare = currentPost.shareCount + 1
-        val sharedPost = currentPost.copy(
-            shareCount = countShare
-        )
-        data.value = sharedPost
+
     }
 
 
