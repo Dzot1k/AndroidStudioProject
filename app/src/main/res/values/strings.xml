@@ -4,4 +4,8 @@
     <string name="avatar_description">Author avatar</string>
     <string name="thousands">%1$sK</string>
     <string name="million">%1$sM</string>
+    <string name="remove">Remove</string>
+    <string name="post_text">Post Text…</string>
+    <string name="menu_edit">Edit</string>
+    <string name="edit_message">Edit message</string>
 </resources>
