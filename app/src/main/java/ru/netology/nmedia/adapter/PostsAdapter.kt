@@ -57,6 +57,7 @@ internal class PostsAdapter(
         init {
             binding.likeIcon.setOnClickListener { listener.onLikeClicked(post) }
             binding.shareIcon.setOnClickListener { listener.onShareClicked(post) }
+            binding.options.setOnClickListener { popupMenu.show() }
         }
 
         fun bind(post: Post) {
@@ -66,19 +67,13 @@ internal class PostsAdapter(
                 authorName.text = post.author
                 content.text = post.content
                 date.text = post.published
-                likesCount.text =
-                    getTrueCount(likesCount.context, post.likes)
-                shareCount.text =
-                    getTrueCount(shareCount.context, post.shareCount)
-                likeIcon.setImageResource(getLikeIconResId(post.likedByMe))
-                options.setOnClickListener { popupMenu.show() }
+                likeIcon.text = getTrueCount(likeIcon.context, post.likes)
+                shareIcon.text = getTrueCount(shareIcon.context, post.shareCount)
+                likeIcon.isChecked = post.likedByMe
+
 
             }
         }
-
-        @DrawableRes
-        private fun getLikeIconResId(liked: Boolean) =
-            if (liked) R.drawable.ic_liked_24dp else R.drawable.ic_like_24dp
 
         private fun getTrueCount(context: Context, count: Int): String {
             if (count in 1000..10_000) {
