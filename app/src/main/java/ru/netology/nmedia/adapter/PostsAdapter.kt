@@ -1,10 +1,11 @@
 package ru.netology.nmedia.adapter
 
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.annotation.DrawableRes
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -46,6 +47,7 @@ internal class PostsAdapter(
                         }
                         R.id.edit -> {
                             listener.onEditClicked(post)
+
                             true
                         }
                         else -> false
@@ -57,7 +59,14 @@ internal class PostsAdapter(
         init {
             binding.likeIcon.setOnClickListener { listener.onLikeClicked(post) }
             binding.shareIcon.setOnClickListener { listener.onShareClicked(post) }
+            binding.videoBanner.setOnClickListener {
+                listener.onPlayVideoClicked(post)
+            }
+            binding.playVideo.setOnClickListener {
+                listener.onPlayVideoClicked(post)
+            }
             binding.options.setOnClickListener { popupMenu.show() }
+
         }
 
         fun bind(post: Post) {
@@ -70,8 +79,7 @@ internal class PostsAdapter(
                 likeIcon.text = getTrueCount(likeIcon.context, post.likes)
                 shareIcon.text = getTrueCount(shareIcon.context, post.shareCount)
                 likeIcon.isChecked = post.likedByMe
-
-
+                videoGroup.isVisible = post.video != null
             }
         }
 

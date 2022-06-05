@@ -12,4 +12,7 @@
     <string name="description_post_like">Лайк поста</string>
     <string name="description_post_share">Поделиться постом</string>
     <string name="description_post_options">Меню поста</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="description_post_save">Сохранить</string>
+    <string name="add_post">Добавить пост</string>
 </resources>

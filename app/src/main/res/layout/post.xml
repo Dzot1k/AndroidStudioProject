@@ -74,6 +74,37 @@
         app:layout_constraintTop_toBottomOf="@id/header_barrier"
         tools:text="Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="video_banner"/>
+
+    <View
+        android:id="@+id/video_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/image_video"
+        app:layout_constraintTop_toBottomOf="@id/content"/>
+    
+    <View
+        android:id="@+id/play_video"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:drawable/ic_media_play"
+        app:layout_constraintTop_toTopOf="@id/video_banner"
+        app:layout_constraintBottom_toBottomOf="@id/video_banner"
+        app:layout_constraintStart_toStartOf="@id/video_banner"
+        app:layout_constraintEnd_toEndOf="@id/video_banner"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/video_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:constraint_referenced_ids="video_banner, play_video"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/likeIcon"
         style="@style/Widget.AppTheme.LikeCheckbox"
@@ -83,7 +114,7 @@
         android:contentDescription="@string/description_post_like"
         app:icon="@drawable/ic_like_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/content"
+        app:layout_constraintTop_toBottomOf="@id/footer"
         tools:text="100500" />
 
     <com.google.android.material.button.MaterialButton
@@ -95,7 +126,7 @@
         android:contentDescription="@string/description_post_share"
         app:icon="@drawable/ic_share_24dp"
         app:layout_constraintStart_toEndOf="@id/likeIcon"
-        app:layout_constraintTop_toBottomOf="@id/content"
+        app:layout_constraintTop_toBottomOf="@id/footer"
         tools:text="10000" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -105,7 +136,7 @@
         android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginEnd="@dimen/common_spacing"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/content"
+        app:layout_constraintTop_toBottomOf="@id/footer"
         tools:text="1000" />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -117,7 +148,7 @@
         android:background="@android:color/transparent"
         android:src="@drawable/ic_views_24dp"
         app:layout_constraintEnd_toStartOf="@id/viewsCount"
-        app:layout_constraintTop_toBottomOf="@id/content" />
+        app:layout_constraintTop_toBottomOf="@id/footer" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

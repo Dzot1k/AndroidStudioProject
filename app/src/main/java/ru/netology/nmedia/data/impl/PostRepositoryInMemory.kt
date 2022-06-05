@@ -15,14 +15,26 @@ class PostRepositoryInMemory : PostRepository {
 
     override val data = MutableLiveData(
         List(GENERATED_POSTS_AMOUNT) { index ->
-            Post(
-                id = index + 1L,
-                author = "Netology",
-                content = "Content $index",
-                published = "21.05.2022",
-                likes = 999,
-                shareCount = 999_999
-            )
+            if (index == 1) {
+                Post(
+                    id = index + 1L,
+                    author = "Netology",
+                    content = "Content $index",
+                    published = "21.05.2022",
+                    likes = 999,
+                    shareCount = 999_999,
+                    video = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
+                )
+            } else {
+                Post(
+                    id = index + 1L,
+                    author = "Netology",
+                    content = "Content $index",
+                    published = "21.05.2022",
+                    likes = 999,
+                    shareCount = 999_999
+                )
+            }
         }
 
     )
