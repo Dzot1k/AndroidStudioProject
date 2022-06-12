@@ -16,7 +16,8 @@ fun View.focusAndShowKeyboard() {
     fun View.showTheKeyboardNow() {
         if (isFocused) {
             post {
-                val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
             }
         }

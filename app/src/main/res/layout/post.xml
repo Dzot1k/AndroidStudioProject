@@ -79,32 +79,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="video_banner"/>
+        app:constraint_referenced_ids="video_banner" />
 
     <View
         android:id="@+id/video_banner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/image_video"
-        app:layout_constraintTop_toBottomOf="@id/content"/>
-    
+        app:layout_constraintTop_toBottomOf="@id/content" />
+
     <View
         android:id="@+id/play_video"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@android:drawable/ic_media_play"
-        app:layout_constraintTop_toTopOf="@id/video_banner"
         app:layout_constraintBottom_toBottomOf="@id/video_banner"
+        app:layout_constraintEnd_toEndOf="@id/video_banner"
         app:layout_constraintStart_toStartOf="@id/video_banner"
-        app:layout_constraintEnd_toEndOf="@id/video_banner"/>
+        app:layout_constraintTop_toTopOf="@id/video_banner" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/video_group"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        tools:visibility="visible"
-        app:constraint_referenced_ids="video_banner, play_video"/>
+        app:constraint_referenced_ids="video_banner, play_video"
+        tools:visibility="visible" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/likeIcon"
         style="@style/Widget.AppTheme.LikeCheckbox"

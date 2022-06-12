@@ -66,6 +66,7 @@ internal class PostsAdapter(
                 listener.onPlayVideoClicked(post)
             }
             binding.options.setOnClickListener { popupMenu.show() }
+            binding.root.setOnClickListener { listener.onPostClicked(post) }
 
         }
 

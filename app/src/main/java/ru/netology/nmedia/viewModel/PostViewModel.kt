@@ -19,6 +19,7 @@ class PostViewModel(
 
     val sharePostContent = SingleLiveEvent<String>()
     val navigateToPostContentScreenEvent = SingleLiveEvent<String>()
+    val navigateToCurrentPostScreenEvent = SingleLiveEvent<Post>()
 
     /**
      * The event value contains the video's url for the play
@@ -68,6 +69,10 @@ class PostViewModel(
             "Url must not be null"
         }
         playVideo.value = url
+    }
+
+    override fun onPostClicked(post: Post) {
+        navigateToCurrentPostScreenEvent.value = post
     }
 
     // endregion PostInteractionListener
