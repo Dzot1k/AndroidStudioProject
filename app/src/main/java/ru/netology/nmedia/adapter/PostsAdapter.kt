@@ -80,7 +80,8 @@ internal class PostsAdapter(
                 likeIcon.text = getTrueCount(likeIcon.context, post.likes)
                 shareIcon.text = getTrueCount(shareIcon.context, post.shareCount)
                 likeIcon.isChecked = post.likedByMe
-                videoGroup.isVisible = post.video != null
+                videoGroup.isVisible = !post.video.isNullOrBlank()
+                //videoGroup.isVisible = post.video != ""
             }
         }
 
